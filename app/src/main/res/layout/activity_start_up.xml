@@ -3,16 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".View.StartUpActivity">
+    android:orientation="vertical"
+    tools:context=".View.StartUpActivity"
+    >
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/activity_start_up_fragment_container">
+  <FrameLayout
+      android:id="@+id/activity_start_up_fragment_container"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
 
-    </FrameLayout>
+  </FrameLayout>
 
 
 </LinearLayout>

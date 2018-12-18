@@ -24,48 +24,49 @@ import butterknife.ButterKnife;
 
 public class LogInFragment extends Fragment {
 
-    private FirebaseAuth mAuth;
+  private FirebaseAuth mAuth;
 
-    @BindView(R.id.fragment_log_in_email_et)
-    EditText email;
-    @BindView(R.id.fragment_log_in_password_et)
-    EditText password;
-    @BindView(R.id.fragment_log_in_submit_btn)
-    Button loginBtn;
+  @BindView(R.id.fragment_log_in_email_et)
+  EditText email;
+  @BindView(R.id.fragment_log_in_password_et)
+  EditText password;
+  @BindView(R.id.fragment_log_in_submit_btn)
+  Button loginBtn;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_log_in, container, false);
-        ButterKnife.bind(this, rootView);
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+      @Nullable Bundle savedInstanceState) {
+    View rootView = inflater.inflate(R.layout.fragment_log_in, container, false);
+    ButterKnife.bind(this, rootView);
 
-        mAuth = FirebaseAuth.getInstance();
+    mAuth = FirebaseAuth.getInstance();
 
-        loginBtn.setOnClickListener(click -> {
-            submitForm();
-        });
+    loginBtn.setOnClickListener(click -> {
+      submitForm();
+    });
 
-        return rootView;
+    return rootView;
+  }
+
+  private void submitForm() {
+    if (isFormValid()) {
+      mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+          .addOnCompleteListener(logedIn -> {
+            if (logedIn.isSuccessful()) {
+              Intent intent = new Intent(getContext(), MainActivity.class);
+              startActivity(intent);
+            } else {
+              Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+          });
+    } else {
+      Toast.makeText(getContext(), "Email or password cannot be empty", Toast.LENGTH_SHORT)
+          .show();
     }
+  }
 
-    private void submitForm() {
-        if (isFormValid()) {
-            mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                    .addOnCompleteListener(logedIn -> {
-                        if (logedIn.isSuccessful()) {
-                            Intent intent = new Intent(getContext(), MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        } else {
-            Toast.makeText(getContext(), "Email or password cannot be empty", Toast.LENGTH_SHORT)
-                    .show();
-        }
-    }
-
-    private boolean isFormValid() {
-        return !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty();
-    }
+  private boolean isFormValid() {
+    return !email.getText().toString().isEmpty() && !password.getText().toString().isEmpty();
+  }
 }

@@ -14,34 +14,34 @@ import butterknife.ButterKnife;
 
 public class StartUpActivity extends AppCompatActivity {
 
-    private FirebaseUser currentUser;
+  private FirebaseUser currentUser;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_up);
-        ButterKnife.bind(this);
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_start_up);
+    ButterKnife.bind(this);
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.activity_start_up_fragment_container, new SplashScreenFragment())
-                .commit();
+    getSupportFragmentManager()
+        .beginTransaction()
+        .replace(R.id.activity_start_up_fragment_container, new SplashScreenFragment())
+        .commit();
 
-        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    currentUser = FirebaseAuth.getInstance().getCurrentUser();
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    if (currentUser == null) {
+      getSupportFragmentManager()
+          .beginTransaction()
+          .replace(R.id.activity_start_up_fragment_container, new LoginOrRegistrationFragment())
+          .commit();
+    } else {
+      Intent intent = new Intent(this, MainActivity.class);
+      startActivity(intent);
+      finish();
     }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (currentUser == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.activity_start_up_fragment_container, new LoginOrRegistrationFragment())
-                    .commit();
-        } else {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
-    }
+  }
 }

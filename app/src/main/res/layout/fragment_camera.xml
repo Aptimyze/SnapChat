@@ -5,16 +5,18 @@
     android:layout_height="match_parent"
     >
 
-    <SurfaceView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/fragment_camera_surfaceView"/>
+  <SurfaceView
+      android:id="@+id/fragment_camera_surfaceView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      />
 
-    <Button
-        android:id="@+id/fragment_camera_capture_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="@string/camera_button_text"/>
+  <Button
+      android:id="@+id/fragment_camera_capture_btn"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|center"
+      android:text="@string/camera_button_text"
+      />
 
 </FrameLayout>

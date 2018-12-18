@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.PictureActivity">
+    tools:context=".View.PictureActivity"
+    >
 
-    <ImageView
-        android:id="@+id/activity_picture_image_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        />
+  <ImageView
+      android:id="@+id/activity_picture_image_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:scaleType="fitXY"
+      />
 
-    <Button
-        android:layout_gravity="bottom|start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/save_to_story_button"
-        android:text="Story"/>
+  <Button
+      android:id="@+id/save_to_story_button"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|start"
+      android:text="Story"
+      />
 
 </FrameLayout>
